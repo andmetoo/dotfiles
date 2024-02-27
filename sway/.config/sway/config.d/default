@@ -1,0 +1,18 @@
+
+
+### Idle configuration
+exec swayidle -w\
+    timeout 370 'swaylock -f -C ~/.config/swaylock/config'\
+    timeout 670 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"' \
+    before-sleep 'swaylock -C ~/.config/swaylock/config'
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+focus_follows_mouse no
+
+
+
+
+

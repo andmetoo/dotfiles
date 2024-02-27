@@ -1,0 +1,39 @@
+# Auth with polkit-gnome:
+exec /usr/libexec/sway-systemd/assign-cgroups.py
+exec /usr/libexec/sway-systemd/session.sh
+
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+#exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP 
+exec systemctl --user restart pipewire 
+
+
+# cliphist
+exec wl-paste --type text --watch cliphist store # clipboard store text data
+exec wl-paste --type image --watch cliphist store # clipboard store image data
+# Desktop notifications
+exec dunst
+
+# Network Applet
+exec nm-applet --indicator
+
+# GTK3 applications take a long time to start
+#exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+#exec hash dbus-update-activation-environment 2>/dev/null && \
+#     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+     
+
+# 1password
+exec '/usr/bin/1password --enable-features=UseOzonePlatform --ozone-platform=wayland %U'
+
+# Sway Fader
+# exec python3 ~/.config/sway/scripts/swayfader.py
+
+# Sway OSD
+#exec swayosd-server
+#exec "avizo-service"      
+
+
+
+
